@@ -6,6 +6,7 @@ import com.raithamitra.backend.repository.OtpMetadataRepository;
 import com.raithamitra.backend.service.SmsOtpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,11 +23,13 @@ import java.util.Optional;
  * Development implementation of SmsOtpService.
  * Generates secure random 6-digit OTPs, stores SHA-256 hashed metadata,
  * enforces 30-second resend cooldown and 5-minute expiration window.
+ * Active in non-production profiles (!prod).
  *
  * @author Suleman Agasimani
  * @since 1.0
  */
 @Service
+@Profile("!prod")
 public class DevelopmentSmsOtpServiceImpl implements SmsOtpService {
 
     private static final Logger log = LoggerFactory.getLogger(DevelopmentSmsOtpServiceImpl.class);

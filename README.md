@@ -74,7 +74,9 @@ Refer to [.env.example](file:///c:/Users/Suleman%20Agasimani/OneDrive/Desktop/Ne
 | `DATABASE_PASSWORD` | Neon Database Password | No |
 | `JWT_SECRET` | 256-bit JWT Signing Secret | No |
 | `FRONTEND_ORIGIN` | Allowed CORS Origin (`https://raitha-mitra-frontend.onrender.com`) | No |
-| `OTP_PROVIDER_API_KEY` | Real SMS Gateway API Key | No |
+| `MSG91_AUTH_KEY` | MSG91 Production Auth Key | No |
+| `MSG91_TEMPLATE_ID` | MSG91 Approved DLT Template ID | No |
+| `MSG91_SENDER_ID` | MSG91 Approved 6-char Header (e.g. `RAITHA`) | No |
 | `VITE_API_BASE_URL` | Backend REST Endpoint (`https://raitha-mitra-backend.onrender.com/api/v1`) | **Yes (Public)** |
 
 ---

@@ -22,8 +22,13 @@ services:
         generateValue: true # Render automatically generates a 256-bit secure secret key
       - key: FRONTEND_ORIGIN
         sync: false # Set to https://<frontend-service-name>.onrender.com
-      - key: OTP_PROVIDER_API_KEY
-        sync: false # Production SMS Gateway API Key
+      - key: MSG91_AUTH_KEY
+        sync: false # MSG91 Authentication Key from MSG91 Dashboard
+      - key: MSG91_TEMPLATE_ID
+        sync: false # MSG91 Approved DLT Template ID
+      - key: MSG91_SENDER_ID
+        sync: false # MSG91 Approved 6-character Header/Sender ID (e.g. RAITHA)
+
 
   # React / Vite Frontend Static Site
   - type: web
