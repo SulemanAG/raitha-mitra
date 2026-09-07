@@ -20,7 +20,7 @@ FROM eclipse-temurin:17-jre-alpine AS runtime
 WORKDIR /app
 
 # Create non-root system user for security hardening
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S appuser && adduser -S appuser -G appuser
 
 # Copy generated Spring Boot executable JAR from build stage
 COPY --from=build /app/target/*.jar app.jar
