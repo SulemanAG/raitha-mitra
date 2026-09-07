@@ -1,13 +1,23 @@
 package com.raithamitra.backend.entity;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-import java.util.UUID;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User Entity representing user domain persistence model in PostgreSQL.
+ * Serves as central account identity with multi-role mapping and composite profile relationships.
  *
  * @author Suleman Agasimani
  * @since 1.0
@@ -22,16 +32,30 @@ public class UserEntity extends BaseEntity {
     @Column(name = "primary_role", nullable = false, length = 30)
     private String primaryRole;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean active = true;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "account_status", nullable = false, length = 30)
+    private AccountStatus accountStatus = AccountStatus.ACTIVE;
+
+    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.LAZY)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role", nullable = false, length = 30)
+    @Enumerated(EnumType.STRING)
+    private Set<UserRole> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private FarmerProfileEntity farmerProfile;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private LabourerProfileEntity labourerProfile;
 
     public UserEntity() {
     }
 
-    public UserEntity(String mobileNumber, String primaryRole, boolean active) {
+    public UserEntity(String mobileNumber, String primaryRole, AccountStatus accountStatus, Set<UserRole> roles) {
         this.mobileNumber = mobileNumber;
         this.primaryRole = primaryRole;
-        this.active = active;
+        this.accountStatus = accountStatus != null ? accountStatus : AccountStatus.ACTIVE;
+        this.roles = roles != null ? roles : new HashSet<>();
     }
 
     public String getMobileNumber() {
@@ -50,12 +74,46 @@ public class UserEntity extends BaseEntity {
         this.primaryRole = primaryRole;
     }
 
-    public boolean isActive() {
-        return active;
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public boolean isActive() {
+        return this.accountStatus == AccountStatus.ACTIVE;
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+
+    public FarmerProfileEntity getFarmerProfile() {
+        return farmerProfile;
+    }
+
+    public void setFarmerProfile(FarmerProfileEntity farmerProfile) {
+        this.farmerProfile = farmerProfile;
+        if (farmerProfile != null) {
+            farmerProfile.setUser(this);
+        }
+    }
+
+    public LabourerProfileEntity getLabourerProfile() {
+        return labourerProfile;
+    }
+
+    public void setLabourerProfile(LabourerProfileEntity labourerProfile) {
+        this.labourerProfile = labourerProfile;
+        if (labourerProfile != null) {
+            labourerProfile.setUser(this);
+        }
     }
 
     public static UserEntityBuilder builder() {
@@ -65,7 +123,8 @@ public class UserEntity extends BaseEntity {
     public static class UserEntityBuilder {
         private String mobileNumber;
         private String primaryRole;
-        private boolean active = true;
+        private AccountStatus accountStatus = AccountStatus.ACTIVE;
+        private Set<UserRole> roles = new HashSet<>();
 
         public UserEntityBuilder mobileNumber(String mobileNumber) {
             this.mobileNumber = mobileNumber;
@@ -77,13 +136,24 @@ public class UserEntity extends BaseEntity {
             return this;
         }
 
+        public UserEntityBuilder accountStatus(AccountStatus accountStatus) {
+            this.accountStatus = accountStatus;
+            return this;
+        }
+
+        public UserEntityBuilder roles(Set<UserRole> roles) {
+            this.roles = roles;
+            return this;
+        }
+
         public UserEntityBuilder active(boolean active) {
-            this.active = active;
+            this.accountStatus = active ? AccountStatus.ACTIVE : AccountStatus.DEACTIVATED;
             return this;
         }
 
         public UserEntity build() {
-            return new UserEntity(mobileNumber, primaryRole, active);
+            UserEntity entity = new UserEntity(mobileNumber, primaryRole, accountStatus, roles);
+            return entity;
         }
     }
 }

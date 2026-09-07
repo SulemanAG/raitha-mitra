@@ -5,18 +5,20 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Data Transfer Object representing user account detail response.
+ * Composite Data Transfer Object summarizing User account identity, roles, account status,
+ * and optional associated Farmer/Labourer domain profiles.
  *
  * @author Suleman Agasimani
  * @since 1.0
  */
-public record UserResponseDto(
+public record UserProfileResponseDto(
         UUID id,
         String mobileNumber,
         String primaryRole,
         String accountStatus,
         Set<String> roles,
-        boolean active,
+        FarmerProfileResponseDto farmerProfile,
+        LabourerProfileResponseDto labourerProfile,
         Instant createdAt,
         Instant updatedAt
 ) {

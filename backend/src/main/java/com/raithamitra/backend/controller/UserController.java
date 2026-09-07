@@ -1,12 +1,16 @@
 package com.raithamitra.backend.controller;
 
 import com.raithamitra.backend.dto.request.CreateUserRequestDto;
+import com.raithamitra.backend.dto.request.UpdateUserStatusRequestDto;
+import com.raithamitra.backend.dto.response.UserProfileResponseDto;
 import com.raithamitra.backend.dto.response.UserResponseDto;
 import com.raithamitra.backend.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,6 +49,12 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/{id}/profile")
+    public ResponseEntity<UserProfileResponseDto> getUserProfileById(@PathVariable UUID id) {
+        UserProfileResponseDto userProfile = userService.getUserProfileById(id);
+        return ResponseEntity.ok(userProfile);
+    }
+
     @GetMapping("/mobile/{mobileNumber}")
     public ResponseEntity<UserResponseDto> getUserByMobileNumber(@PathVariable String mobileNumber) {
         UserResponseDto user = userService.getUserByMobileNumber(mobileNumber);
@@ -55,5 +65,20 @@ public class UserController {
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
         List<UserResponseDto> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<UserResponseDto> updateUserStatus(
+            @PathVariable UUID id,
+            @Valid @RequestBody UpdateUserStatusRequestDto requestDto
+    ) {
+        UserResponseDto updatedUser = userService.updateUserStatus(id, requestDto);
+        return ResponseEntity.ok(updatedUser);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deactivateUser(@PathVariable UUID id) {
+        userService.deactivateUser(id);
+        return ResponseEntity.noContent().build();
     }
 }

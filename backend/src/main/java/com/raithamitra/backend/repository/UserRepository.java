@@ -1,5 +1,6 @@
 package com.raithamitra.backend.repository;
 
+import com.raithamitra.backend.entity.AccountStatus;
 import com.raithamitra.backend.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,8 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     Optional<UserEntity> findByMobileNumber(String mobileNumber);
+
+    Optional<UserEntity> findByMobileNumberAndAccountStatus(String mobileNumber, AccountStatus accountStatus);
 
     boolean existsByMobileNumber(String mobileNumber);
 }
