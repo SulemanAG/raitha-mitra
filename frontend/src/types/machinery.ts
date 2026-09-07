@@ -105,3 +105,32 @@ export interface UpdateRentalStatusPayload {
   status: RentalStatus;
   ownerNotes?: string;
 }
+
+export interface MachineryDiscoveryItem {
+  id: string;
+  name: string;
+  modelNumber?: string;
+  category: MachineryCategory;
+  hpRating?: number;
+  dailyRate: number;
+  hourlyRate?: number;
+  status: OperationalStatus;
+  village?: string;
+  district?: string;
+  approximateDistanceKm?: number;
+  ownerName: string;
+  available: boolean;
+  version: number;
+}
+
+export interface UpdateLocationPayload {
+  latitude?: number;
+  longitude?: number;
+  state?: string;
+  district?: string;
+  taluk?: string;
+  village?: string;
+  locationSource?: 'GPS_DEVICE' | 'MANUAL_PIN' | 'PROFILE_ADDRESS';
+  version?: number;
+}
+

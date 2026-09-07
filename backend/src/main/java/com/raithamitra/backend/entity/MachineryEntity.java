@@ -1,6 +1,7 @@
 package com.raithamitra.backend.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -8,12 +9,14 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
  * JPA Entity representing an agricultural machinery asset available for rental.
+ * Includes embedded LocationData and Version field for optimistic concurrency control.
  *
  * @author Suleman Agasimani
  * @since 1.0
@@ -42,6 +45,9 @@ public class MachineryEntity extends BaseEntity {
     @Column(name = "location", nullable = false, length = 150)
     private String location;
 
+    @Embedded
+    private LocationData locationData;
+
     @Column(name = "daily_rate", nullable = false, precision = 10, scale = 2)
     private BigDecimal dailyRate;
 
@@ -51,6 +57,10 @@ public class MachineryEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 30)
     private OperationalStatus status = OperationalStatus.ACTIVE;
+
+    @Version
+    @Column(name = "version", nullable = false)
+    private Long version = 0L;
 
     public MachineryEntity() {
     }
@@ -103,6 +113,14 @@ public class MachineryEntity extends BaseEntity {
         this.location = location;
     }
 
+    public LocationData getLocationData() {
+        return locationData;
+    }
+
+    public void setLocationData(LocationData locationData) {
+        this.locationData = locationData;
+    }
+
     public BigDecimal getDailyRate() {
         return dailyRate;
     }
@@ -125,6 +143,14 @@ public class MachineryEntity extends BaseEntity {
 
     public void setStatus(OperationalStatus status) {
         this.status = status;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override
