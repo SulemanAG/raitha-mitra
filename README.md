@@ -25,7 +25,7 @@ Raitha Mitra is a production-oriented, full-stack digital platform connecting fa
 | Subsystem | Hosting Platform | Tech Stack | Configuration |
 | :--- | :--- | :--- | :--- |
 | **Frontend UI** | **Render (Static Site)** | React 18, TypeScript, Vite, i18next | Client SPA Rewrite (`/*` → `/index.html`) |
-| **Backend REST API** | **Render (Web Service)** | Spring Boot 3, Java 17, Spring Security | Maven Wrapper (`./mvnw clean package`) |
+| **Backend REST API** | **Render (Docker Service)** | Spring Boot 3, Java 17, Docker (Temurin 17 JRE) | Multi-stage Docker build (`backend/Dockerfile`) |
 | **Database** | **Neon PostgreSQL** | Serverless PostgreSQL 16 | Flyway Schema Migrations (`V1` to `V6`) |
 
 ---

@@ -1,15 +1,13 @@
 # Render Infrastructure Blueprint for Raitha Mitra Deployment
-# Defines Backend Spring Boot Web Service and Frontend React Static Web Service.
+# Defines Backend Dockerized Spring Boot Web Service and Frontend React Static Web Service.
 
 services:
-  # Spring Boot Backend Web Service
+  # Spring Boot Backend Dockerized Web Service
   - type: web
     name: raitha-mitra-backend
-    env: java
+    runtime: docker
     plan: free
     rootDir: backend
-    buildCommand: "./mvnw clean package"
-    startCommand: "java -jar target/backend-1.0.0-SNAPSHOT.jar"
     healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
@@ -30,7 +28,7 @@ services:
   # React / Vite Frontend Static Site
   - type: web
     name: raitha-mitra-frontend
-    env: static
+    runtime: static
     rootDir: frontend
     buildCommand: "npm install && npm run build"
     staticPublishPath: dist
