@@ -11,6 +11,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -21,6 +24,8 @@ import java.util.Objects;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "machinery")
 public class MachineryEntity extends BaseEntity {
@@ -63,94 +68,6 @@ public class MachineryEntity extends BaseEntity {
     private Long version = 0L;
 
     public MachineryEntity() {
-    }
-
-    public UserEntity getOwnerUser() {
-        return ownerUser;
-    }
-
-    public void setOwnerUser(UserEntity ownerUser) {
-        this.ownerUser = ownerUser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getModelNumber() {
-        return modelNumber;
-    }
-
-    public void setModelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
-    }
-
-    public MachineryCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(MachineryCategory category) {
-        this.category = category;
-    }
-
-    public Integer getHpRating() {
-        return hpRating;
-    }
-
-    public void setHpRating(Integer hpRating) {
-        this.hpRating = hpRating;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public LocationData getLocationData() {
-        return locationData;
-    }
-
-    public void setLocationData(LocationData locationData) {
-        this.locationData = locationData;
-    }
-
-    public BigDecimal getDailyRate() {
-        return dailyRate;
-    }
-
-    public void setDailyRate(BigDecimal dailyRate) {
-        this.dailyRate = dailyRate;
-    }
-
-    public BigDecimal getHourlyRate() {
-        return hourlyRate;
-    }
-
-    public void setHourlyRate(BigDecimal hourlyRate) {
-        this.hourlyRate = hourlyRate;
-    }
-
-    public OperationalStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OperationalStatus status) {
-        this.status = status;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
     @Override

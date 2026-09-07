@@ -11,6 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +25,8 @@ import java.util.Set;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "labourer_profiles")
 public class LabourerProfileEntity extends BaseEntity {
@@ -59,53 +64,5 @@ public class LabourerProfileEntity extends BaseEntity {
         this.experienceYears = experienceYears != null ? experienceYears : 0;
         this.availabilityStatus = availabilityStatus != null ? availabilityStatus : AvailabilityStatus.AVAILABLE;
         this.skills = skills != null ? skills : new HashSet<>();
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public BigDecimal getDailyWageRate() {
-        return dailyWageRate;
-    }
-
-    public void setDailyWageRate(BigDecimal dailyWageRate) {
-        this.dailyWageRate = dailyWageRate;
-    }
-
-    public Integer getExperienceYears() {
-        return experienceYears;
-    }
-
-    public void setExperienceYears(Integer experienceYears) {
-        this.experienceYears = experienceYears;
-    }
-
-    public AvailabilityStatus getAvailabilityStatus() {
-        return availabilityStatus;
-    }
-
-    public void setAvailabilityStatus(AvailabilityStatus availabilityStatus) {
-        this.availabilityStatus = availabilityStatus;
-    }
-
-    public Set<LabourSkill> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(Set<LabourSkill> skills) {
-        this.skills = skills;
     }
 }

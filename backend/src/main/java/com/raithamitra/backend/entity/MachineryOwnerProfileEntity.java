@@ -7,6 +7,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
 /**
@@ -16,6 +19,8 @@ import java.util.Objects;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "machinery_owner_profiles")
 public class MachineryOwnerProfileEntity extends BaseEntity {
@@ -34,38 +39,6 @@ public class MachineryOwnerProfileEntity extends BaseEntity {
     private String contactNumber;
 
     public MachineryOwnerProfileEntity() {
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
     }
 
     @Override

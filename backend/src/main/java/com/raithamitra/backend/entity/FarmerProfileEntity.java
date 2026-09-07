@@ -7,6 +7,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 /**
@@ -16,6 +19,8 @@ import java.math.BigDecimal;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "farmer_profiles")
 public class FarmerProfileEntity extends BaseEntity {
@@ -44,46 +49,6 @@ public class FarmerProfileEntity extends BaseEntity {
         this.fullName = fullName;
         this.farmLocation = farmLocation;
         this.farmSizeAcres = farmSizeAcres;
-        this.preferredCropTypes = preferredCropTypes;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getFarmLocation() {
-        return farmLocation;
-    }
-
-    public void setFarmLocation(String farmLocation) {
-        this.farmLocation = farmLocation;
-    }
-
-    public BigDecimal getFarmSizeAcres() {
-        return farmSizeAcres;
-    }
-
-    public void setFarmSizeAcres(BigDecimal farmSizeAcres) {
-        this.farmSizeAcres = farmSizeAcres;
-    }
-
-    public String getPreferredCropTypes() {
-        return preferredCropTypes;
-    }
-
-    public void setPreferredCropTypes(String preferredCropTypes) {
         this.preferredCropTypes = preferredCropTypes;
     }
 }

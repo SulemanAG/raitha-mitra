@@ -12,6 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +25,8 @@ import java.util.Set;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
@@ -58,44 +63,8 @@ public class UserEntity extends BaseEntity {
         this.roles = roles != null ? roles : new HashSet<>();
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getPrimaryRole() {
-        return primaryRole;
-    }
-
-    public void setPrimaryRole(String primaryRole) {
-        this.primaryRole = primaryRole;
-    }
-
-    public AccountStatus getAccountStatus() {
-        return accountStatus;
-    }
-
-    public void setAccountStatus(AccountStatus accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
     public boolean isActive() {
         return this.accountStatus == AccountStatus.ACTIVE;
-    }
-
-    public Set<UserRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<UserRole> roles) {
-        this.roles = roles;
-    }
-
-    public FarmerProfileEntity getFarmerProfile() {
-        return farmerProfile;
     }
 
     public void setFarmerProfile(FarmerProfileEntity farmerProfile) {
@@ -103,10 +72,6 @@ public class UserEntity extends BaseEntity {
         if (farmerProfile != null) {
             farmerProfile.setUser(this);
         }
-    }
-
-    public LabourerProfileEntity getLabourerProfile() {
-        return labourerProfile;
     }
 
     public void setLabourerProfile(LabourerProfileEntity labourerProfile) {

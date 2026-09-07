@@ -8,6 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
@@ -19,6 +22,8 @@ import java.util.UUID;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "otp_metadata")
 public class OtpMetadataEntity {
@@ -63,64 +68,8 @@ public class OtpMetadataEntity {
         this.createdAt = Instant.now();
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getOtpHash() {
-        return otpHash;
-    }
-
-    public void setOtpHash(String otpHash) {
-        this.otpHash = otpHash;
-    }
-
-    public Instant getExpiryTime() {
-        return expiryTime;
-    }
-
-    public void setExpiryTime(Instant expiryTime) {
-        this.expiryTime = expiryTime;
-    }
-
-    public Instant getResendAvailableTime() {
-        return resendAvailableTime;
-    }
-
-    public void setResendAvailableTime(Instant resendAvailableTime) {
-        this.resendAvailableTime = resendAvailableTime;
-    }
-
-    public int getAttemptsCount() {
-        return attemptsCount;
-    }
-
-    public void setAttemptsCount(int attemptsCount) {
-        this.attemptsCount = attemptsCount;
-    }
-
     public void incrementAttempts() {
         this.attemptsCount++;
-    }
-
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
     }
 
     @Override

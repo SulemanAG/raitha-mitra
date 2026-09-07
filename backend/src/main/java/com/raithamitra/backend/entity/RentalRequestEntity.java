@@ -9,6 +9,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -19,6 +22,8 @@ import java.util.Objects;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "machinery_rental_requests")
 public class RentalRequestEntity extends BaseEntity {
@@ -61,94 +66,6 @@ public class RentalRequestEntity extends BaseEntity {
     private String ownerNotes;
 
     public RentalRequestEntity() {
-    }
-
-    public MachineryEntity getMachinery() {
-        return machinery;
-    }
-
-    public void setMachinery(MachineryEntity machinery) {
-        this.machinery = machinery;
-    }
-
-    public UserEntity getRenterUser() {
-        return renterUser;
-    }
-
-    public void setRenterUser(UserEntity renterUser) {
-        this.renterUser = renterUser;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public RentalUnit getRentalUnit() {
-        return rentalUnit;
-    }
-
-    public void setRentalUnit(RentalUnit rentalUnit) {
-        this.rentalUnit = rentalUnit;
-    }
-
-    public int getEstimatedUnits() {
-        return estimatedUnits;
-    }
-
-    public void setEstimatedUnits(int estimatedUnits) {
-        this.estimatedUnits = estimatedUnits;
-    }
-
-    public BigDecimal getRatePerUnit() {
-        return ratePerUnit;
-    }
-
-    public void setRatePerUnit(BigDecimal ratePerUnit) {
-        this.ratePerUnit = ratePerUnit;
-    }
-
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public RentalStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(RentalStatus status) {
-        this.status = status;
-    }
-
-    public String getRenterNotes() {
-        return renterNotes;
-    }
-
-    public void setRenterNotes(String renterNotes) {
-        this.renterNotes = renterNotes;
-    }
-
-    public String getOwnerNotes() {
-        return ownerNotes;
-    }
-
-    public void setOwnerNotes(String ownerNotes) {
-        this.ownerNotes = ownerNotes;
     }
 
     @Override

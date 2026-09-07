@@ -5,6 +5,9 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.Instant;
 import java.util.Objects;
 
@@ -14,6 +17,8 @@ import java.util.Objects;
  * @author Suleman Agasimani
  * @since 1.0
  */
+@Getter
+@Setter
 @Embeddable
 public class LocationData {
 
@@ -54,70 +59,6 @@ public class LocationData {
         this.village = village;
         this.locationSource = locationSource != null ? locationSource : LocationSource.MANUAL;
         this.locationUpdatedAt = Instant.now();
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getTaluk() {
-        return taluk;
-    }
-
-    public void setTaluk(String taluk) {
-        this.taluk = taluk;
-    }
-
-    public String getVillage() {
-        return village;
-    }
-
-    public void setVillage(String village) {
-        this.village = village;
-    }
-
-    public LocationSource getLocationSource() {
-        return locationSource;
-    }
-
-    public void setLocationSource(LocationSource locationSource) {
-        this.locationSource = locationSource;
-    }
-
-    public Instant getLocationUpdatedAt() {
-        return locationUpdatedAt;
-    }
-
-    public void setLocationUpdatedAt(Instant locationUpdatedAt) {
-        this.locationUpdatedAt = locationUpdatedAt;
     }
 
     @Override
