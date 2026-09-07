@@ -12,4 +12,7 @@ export const ROUTES = {
   MOBILE_LOGIN: '/mobile-login',
   OTP_VERIFICATION: '/otp-verification',
   DASHBOARD_PLACEHOLDER: '/dashboard-placeholder',
+  MACHINERY_DISCOVERY: '/machinery',
+  MY_MACHINERY: '/my-machinery',
+  RENTAL_REQUESTS: '/rental-requests',
 } as const;

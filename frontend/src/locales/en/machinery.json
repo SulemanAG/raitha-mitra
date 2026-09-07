@@ -1,0 +1,22 @@
+{
+  "title": "Agricultural Machinery Services",
+  "subtitle": "Discover, rent, or list agricultural equipment in your region",
+  "searchPlaceholder": "Search by village, town, or location...",
+  "allCategories": "All Categories",
+  "dailyRate": "₹{{rate}}/day",
+  "hourlyRate": "₹{{rate}}/hr",
+  "requestRental": "Request Rental",
+  "myMachinery": "My Machinery Fleet",
+  "registerMachine": "Register New Machinery",
+  "rentalRequests": "Rental Bookings",
+  "statusActive": "Active",
+  "statusInactive": "Inactive",
+  "statusMaintenance": "Under Maintenance",
+  "statusPending": "Pending",
+  "statusAccepted": "Accepted",
+  "statusRejected": "Rejected",
+  "statusCancelled": "Cancelled",
+  "accept": "Accept Booking",
+  "reject": "Decline Request",
+  "cancel": "Cancel Request"
+}

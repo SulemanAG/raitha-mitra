@@ -1,0 +1,22 @@
+{
+  "title": "ಕೃಷಿ ಯಂತ್ರೋಪಕರಣಗಳ ಸೇವೆಗಳು",
+  "subtitle": "ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ಕೃಷಿ ಉಪಕರಣಗಳನ್ನು ಹುಡುಕಿ, ಬಾಡಿಗೆಗೆ ಪಡೆಯಿರಿ ಅಥವಾ ನೋಂದಾಯಿಸಿ",
+  "searchPlaceholder": "ಗ್ರಾಮ, ತಾಲೂಕು ಅಥವಾ ಸ್ಥಳದಿಂದ ಹುಡುಕಿ...",
+  "allCategories": "ಎಲ್ಲಾ ವಿಭಾಗಗಳು",
+  "dailyRate": "₹{{rate}}/ದಿನ",
+  "hourlyRate": "₹{{rate}}/ಗಂಟೆಗೆ",
+  "requestRental": "ಬಾಡಿಗೆಗೆ ವಿನಂತಿಸಿ",
+  "myMachinery": "ನನ್ನ ಯಂತ್ರೋಪಕರಣಗಳು",
+  "registerMachine": "ಹೊಸ ಯಂತ್ರ ನೋಂದಾಯಿಸಿ",
+  "rentalRequests": "ಬಾಡಿಗೆ ವಿನಂತಿಗಳು",
+  "statusActive": "ಸಕ್ರಿಯ",
+  "statusInactive": "ನಿಷ್ಕ್ರಿಯ",
+  "statusMaintenance": "ನಿರ್ವಹಣೆಯಲ್ಲಿದೆ",
+  "statusPending": "ಕಾಯುತ್ತಿದೆ",
+  "statusAccepted": "ಸ್ವೀಕರಿಸಲಾಗಿದೆ",
+  "statusRejected": "ತಿರಸ್ಕರಿಸಲಾಗಿದೆ",
+  "statusCancelled": "ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ",
+  "accept": "ವಿನಂತಿ ಸ್ವೀಕರಿಸಿ",
+  "reject": "ವಿನಂತಿ ನಿರಾಕರಿಸಿ",
+  "cancel": "ವಿನಂತಿ ರದ್ದುಗೊಳಿಸಿ"
+}

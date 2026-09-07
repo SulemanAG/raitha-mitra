@@ -2,7 +2,7 @@
  * Application Routing Architecture for Raitha Mitra.
  * 
  * @file src/routes/AppRouter.tsx
- * @description React Router SPA routes with onboarding step guards and unknown route fallbacks.
+ * @description React Router SPA routes with onboarding step guards, machinery routes, and fallback handling.
  */
 
 import React from 'react';
@@ -15,6 +15,9 @@ import { RoleSelectionPage } from '../pages/RoleSelectionPage';
 import { MobileLoginPage } from '../pages/MobileLoginPage';
 import { OtpVerificationPage } from '../pages/OtpVerificationPage';
 import { DashboardPlaceholderPage } from '../pages/DashboardPlaceholderPage';
+import { MachineryDiscoveryPage } from '../pages/MachineryDiscoveryPage';
+import { MyMachineryPage } from '../pages/MyMachineryPage';
+import { RentalRequestsPage } from '../pages/RentalRequestsPage';
 
 export const AppRouter: React.FC = () => {
   return (
@@ -58,6 +61,11 @@ export const AppRouter: React.FC = () => {
             </OnboardingGuard>
           }
         />
+
+        {/* Machinery Module Routes */}
+        <Route path={ROUTES.MACHINERY_DISCOVERY} element={<MachineryDiscoveryPage />} />
+        <Route path={ROUTES.MY_MACHINERY} element={<MyMachineryPage />} />
+        <Route path={ROUTES.RENTAL_REQUESTS} element={<RentalRequestsPage />} />
 
         {/* Fallback for unknown URLs */}
         <Route path="*" element={<Navigate to={ROUTES.SPLASH} replace />} />

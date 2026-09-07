@@ -13,16 +13,19 @@ import { getStoredLanguage } from '../utils/storage';
 
 import commonEn from './en/common.json';
 import errorsEn from './en/errors.json';
+import machineryEn from './en/machinery.json';
 import onboardingEn from './en/onboarding.json';
 import validationEn from './en/validation.json';
 
 import commonKn from './kn/common.json';
 import errorsKn from './kn/errors.json';
+import machineryKn from './kn/machinery.json';
 import onboardingKn from './kn/onboarding.json';
 import validationKn from './kn/validation.json';
 
 import commonHi from './hi/common.json';
 import errorsHi from './hi/errors.json';
+import machineryHi from './hi/machinery.json';
 import onboardingHi from './hi/onboarding.json';
 import validationHi from './hi/validation.json';
 
@@ -32,18 +35,21 @@ const resources = {
     onboarding: onboardingEn,
     validation: validationEn,
     errors: errorsEn,
+    machinery: machineryEn,
   },
   kn: {
     common: commonKn,
     onboarding: onboardingKn,
     validation: validationKn,
     errors: errorsKn,
+    machinery: machineryKn,
   },
   hi: {
     common: commonHi,
     onboarding: onboardingHi,
     validation: validationHi,
     errors: errorsHi,
+    machinery: machineryHi,
   },
 };
 
@@ -54,7 +60,7 @@ i18n.use(initReactI18next).init({
   lng: initialLanguage,
   fallbackLng: DEFAULT_LANGUAGE,
   defaultNS: 'common',
-  ns: ['common', 'onboarding', 'validation', 'errors'],
+  ns: ['common', 'onboarding', 'validation', 'errors', 'machinery'],
   interpolation: {
     escapeValue: false, // React automatically escapes HTML string injection
   },

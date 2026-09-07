@@ -1,35 +1,47 @@
 /**
- * API Client Configuration Placeholder for Raitha Mitra.
- * 
- * @file src/api/client.ts
- * @description Centralized HTTP client abstraction establishing the future Spring Boot REST API
- * base URL configuration point without hardcoding endpoints across components.
+ * Centralized HTTP client abstraction establishing Spring Boot REST API integration
+ * with Bearer token authentication header injection.
+ *
+ * @author Suleman Agasimani
+ * @since 1.0
  */
 
-// Controlled configuration point for Phase 2 API Base URL
 export const API_CONFIG = {
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1',
   timeout: 10000,
 };
 
-/**
- * Placeholder HTTP fetch wrapper for future Phase 2 backend REST API integration.
- */
 export async function apiFetch<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
   const url = `${API_CONFIG.baseURL}${endpoint}`;
-  
-  const headers = {
+
+  const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(options.headers as Record<string, string>),
   };
 
   const response = await fetch(url, { ...options, headers });
 
   if (!response.ok) {
-    throw new Error(`API Request failed with status ${response.status}`);
+    let errorMessage = `API Request failed with status ${response.status}`;
+    try {
+      const errorData = await response.json();
+      if (errorData?.message) {
+        errorMessage = errorData.message;
+      }
+    } catch {
+      // Ignore JSON parse errors on non-200 responses
+    }
+    throw new Error(errorMessage);
+  }
+
+  if (response.status === 204) {
+    return {} as T;
   }
 
   return response.json() as Promise<T>;
