@@ -1,0 +1,43 @@
+# Render Infrastructure Blueprint for Raitha Mitra Deployment
+# Defines Backend Spring Boot Web Service and Frontend React Static Web Service.
+
+services:
+  # Spring Boot Backend Web Service
+  - type: web
+    name: raitha-mitra-backend
+    env: java
+    plan: free
+    rootDir: backend
+    buildCommand: "./mvnw clean package"
+    startCommand: "java -jar target/backend-1.0.0-SNAPSHOT.jar"
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DATABASE_URL
+        sync: false # Set to Neon PostgreSQL JDBC Connection String in Render Dashboard
+      - key: DATABASE_USERNAME
+        sync: false # Set to Neon Database Username
+      - key: DATABASE_PASSWORD
+        sync: false # Set to Neon Database Password
+      - key: JWT_SECRET
+        generateValue: true # Render automatically generates a 256-bit secure secret key
+      - key: FRONTEND_ORIGIN
+        sync: false # Set to https://<frontend-service-name>.onrender.com
+      - key: OTP_PROVIDER_API_KEY
+        sync: false # Production SMS Gateway API Key
+
+  # React / Vite Frontend Static Site
+  - type: web
+    name: raitha-mitra-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false # Set to https://<backend-service-name>.onrender.com/api/v1

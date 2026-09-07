@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL:${DB_URL:jdbc:postgresql://localhost:5432/raitha_mitra_db}}
+    username: ${DATABASE_USERNAME:${DB_USERNAME:postgres}}
+    password: ${DATABASE_PASSWORD:${DB_PASSWORD:postgres}}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 300000
+      max-lifetime: 900000
+      connection-timeout: 30000
+      keepalive-time: 60000
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+app:
+  cors:
+    allowed-origins: ${FRONTEND_ORIGIN:https://raitha-mitra.onrender.com}
+  jwt:
+    secret: ${JWT_SECRET:RaithaMitraSuperSecureJwtSecretKeyForDevelopmentPhase2026MustBeAtLeast256BitsLong!}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}

@@ -7,6 +7,8 @@ dist-ssr
 *.local
 .env
 .env.*
+!.env.example
+
 
 # Java / Maven Backend
 target
