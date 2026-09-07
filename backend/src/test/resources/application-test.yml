@@ -11,3 +11,11 @@ spring:
     show-sql: false
   flyway:
     enabled: false # H2 test profile uses ddl-auto create-drop
+
+app:
+  cors:
+    allowed-origins: http://localhost:5173
+  jwt:
+    secret: RaithaMitraSuperSecureJwtSecretKeyForDevelopmentPhase2026MustBeAtLeast256BitsLong!
+    expiration-ms: 86400000
+
