@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                "/api/v1/auth/config",
                                 "/api/v1/auth/request-otp",
                                 "/api/v1/auth/verify-otp",
                                 "/api/v1/auth/refresh-token",

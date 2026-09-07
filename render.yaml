@@ -12,6 +12,9 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
+      - key: OTP_ENABLED
+        value: "false" # Explicitly set false for Demo/Portfolio deployment without SMS OTP
+
       - key: DATABASE_URL
         sync: false # Set to Neon PostgreSQL JDBC Connection String in Render Dashboard
       - key: DATABASE_USERNAME

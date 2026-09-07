@@ -21,6 +21,8 @@ import { createMobileNumberSchema, type MobileNumberFormData } from '../validato
 import { COUNTRY_CODE } from '../constants/app.constants';
 import { ROUTES } from '../routes/routes.config';
 
+import { authApi } from '../api/authApi';
+
 export const MobileLoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(['common', 'onboarding', 'validation']);
@@ -40,9 +42,28 @@ export const MobileLoginPage: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: MobileNumberFormData) => {
+  const onSubmit = async (data: MobileNumberFormData) => {
     setMobileNumber(data.mobileNumber);
-    navigate(ROUTES.OTP_VERIFICATION);
+    const formattedMobile = `${COUNTRY_CODE}${data.mobileNumber}`;
+
+    try {
+      const requestRes = await authApi.requestOtp(formattedMobile);
+      if (requestRes.otpRequired === false) {
+        // Demo Mode: OTP disabled by backend. Directly authenticate and issue session
+        const sessionRes = await authApi.verifyOtp(formattedMobile, '000000');
+        if (sessionRes.accessToken) {
+          localStorage.setItem('accessToken', sessionRes.accessToken);
+          sessionStorage.setItem('accessToken', sessionRes.accessToken);
+          navigate(ROUTES.DASHBOARD_PLACEHOLDER);
+          return;
+        }
+      }
+      navigate(ROUTES.OTP_VERIFICATION);
+    } catch (err: unknown) {
+      // Fallback: If backend is offline or dev mode simulation
+      console.warn('Backend request-otp notice:', err);
+      navigate(ROUTES.OTP_VERIFICATION);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

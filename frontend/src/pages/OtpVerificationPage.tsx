@@ -17,6 +17,7 @@ import { ErrorMessage } from '../components/ui/ErrorMessage';
 import { useOnboarding } from '../context/OnboardingContext';
 import { COUNTRY_CODE, OTP_LENGTH } from '../constants/app.constants';
 import { ROUTES } from '../routes/routes.config';
+import { authApi } from '../api/authApi';
 
 export const OtpVerificationPage: React.FC = () => {
   const navigate = useNavigate();
@@ -96,6 +97,22 @@ export const OtpVerificationPage: React.FC = () => {
     setIsVerifying(true);
     setErrorMsg(null);
 
+    const formattedMobile = `${COUNTRY_CODE}${mobileNumber}`;
+
+    try {
+      const sessionRes = await authApi.verifyOtp(formattedMobile, fullOtp);
+      if (sessionRes.accessToken) {
+        localStorage.setItem('accessToken', sessionRes.accessToken);
+        sessionStorage.setItem('accessToken', sessionRes.accessToken);
+        setIsVerifying(false);
+        navigate(ROUTES.DASHBOARD_PLACEHOLDER);
+        return;
+      }
+    } catch (err: unknown) {
+      console.warn('Backend verify-otp error:', err);
+    }
+
+    // Fallback simulation
     const success = await verifyOtpPlaceholder(fullOtp);
     setIsVerifying(false);
 

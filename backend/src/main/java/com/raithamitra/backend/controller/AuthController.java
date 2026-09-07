@@ -6,6 +6,7 @@ import com.raithamitra.backend.dto.response.AuthSessionResponseDto;
 import com.raithamitra.backend.dto.response.UserResponseDto;
 import com.raithamitra.backend.service.AuthService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,15 +28,31 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
+    private final boolean otpEnabled;
 
-    public AuthController(AuthService authService) {
+    public AuthController(
+            AuthService authService,
+            @Value("${app.auth.otp.enabled:false}") boolean otpEnabled
+    ) {
         this.authService = authService;
+        this.otpEnabled = otpEnabled;
+    }
+
+    @GetMapping("/config")
+    public ResponseEntity<Map<String, Object>> getAuthConfig() {
+        return ResponseEntity.ok(Map.of(
+                "otpEnabled", otpEnabled,
+                "mode", otpEnabled ? "OTP_ENABLED" : "DEMO_MODE"
+        ));
     }
 
     @PostMapping("/request-otp")
-    public ResponseEntity<Map<String, String>> requestOtp(@Valid @RequestBody RequestOtpRequestDto requestDto) {
+    public ResponseEntity<Map<String, Object>> requestOtp(@Valid @RequestBody RequestOtpRequestDto requestDto) {
         authService.requestOtp(requestDto);
-        return ResponseEntity.ok(Map.of("message", "OTP sent successfully"));
+        return ResponseEntity.ok(Map.of(
+                "message", "OTP sent successfully",
+                "otpRequired", otpEnabled
+        ));
     }
 
     @PostMapping("/verify-otp")

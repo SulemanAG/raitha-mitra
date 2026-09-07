@@ -41,30 +41,41 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final long jwtExpirationMs;
+    private final boolean otpEnabled;
 
     public AuthServiceImpl(
             SmsOtpService smsOtpService,
             UserRepository userRepository,
             JwtTokenProvider jwtTokenProvider,
-            @Value("${app.jwt.expiration-ms:86400000}") long jwtExpirationMs
+            @Value("${app.jwt.expiration-ms:86400000}") long jwtExpirationMs,
+            @Value("${app.auth.otp.enabled:false}") boolean otpEnabled
     ) {
         this.smsOtpService = smsOtpService;
         this.userRepository = userRepository;
         this.jwtTokenProvider = jwtTokenProvider;
         this.jwtExpirationMs = jwtExpirationMs;
+        this.otpEnabled = otpEnabled;
     }
 
     @Override
     public void requestOtp(RequestOtpRequestDto requestDto) {
-        log.info("Requesting OTP for mobile number: {}", maskMobile(requestDto.mobileNumber()));
-        smsOtpService.generateAndSendOtp(requestDto.mobileNumber());
+        if (otpEnabled) {
+            log.info("Requesting OTP for mobile number: {}", maskMobile(requestDto.mobileNumber()));
+            smsOtpService.generateAndSendOtp(requestDto.mobileNumber());
+        } else {
+            log.info("[DEMO AUTH MODE] OTP challenge disabled (app.auth.otp.enabled=false). Bypassing SMS dispatch for mobile: {}", maskMobile(requestDto.mobileNumber()));
+        }
     }
 
     @Override
     @Transactional
     public AuthSessionResponseDto verifyOtpAndAuthenticate(VerifyOtpRequestDto requestDto) {
-        log.info("Verifying OTP for mobile number: {}", maskMobile(requestDto.mobileNumber()));
-        smsOtpService.verifyOtp(requestDto.mobileNumber(), requestDto.otp());
+        if (otpEnabled) {
+            log.info("Verifying OTP for mobile number: {}", maskMobile(requestDto.mobileNumber()));
+            smsOtpService.verifyOtp(requestDto.mobileNumber(), requestDto.otp());
+        } else {
+            log.info("[DEMO AUTH MODE] OTP challenge disabled (app.auth.otp.enabled=false). Authenticating user directly for mobile: {}", maskMobile(requestDto.mobileNumber()));
+        }
 
         boolean isNewUser = false;
         Optional<UserEntity> existingUser = userRepository.findByMobileNumber(requestDto.mobileNumber());
@@ -72,6 +83,9 @@ public class AuthServiceImpl implements AuthService {
         UserEntity user;
         if (existingUser.isPresent()) {
             user = existingUser.get();
+            if (!user.isActive()) {
+                throw new com.raithamitra.backend.exception.ValidationException("Account is inactive or suspended");
+            }
         } else {
             isNewUser = true;
             Set<UserRole> roles = new HashSet<>();

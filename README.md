@@ -69,6 +69,7 @@ Refer to [.env.example](file:///c:/Users/Suleman%20Agasimani/OneDrive/Desktop/Ne
 | Environment Variable | Description | Exposed to Frontend? |
 | :--- | :--- | :--- |
 | `SPRING_PROFILES_ACTIVE` | Set to `prod` for Spring Boot | No |
+| `OTP_ENABLED` | Set `false` for Demo/Portfolio mode without SMS OTP, `true` for real OTP | No |
 | `DATABASE_URL` | Neon PostgreSQL JDBC URL | No |
 | `DATABASE_USERNAME` | Neon Database User | No |
 | `DATABASE_PASSWORD` | Neon Database Password | No |
@@ -78,6 +79,14 @@ Refer to [.env.example](file:///c:/Users/Suleman%20Agasimani/OneDrive/Desktop/Ne
 | `MSG91_TEMPLATE_ID` | MSG91 Approved DLT Template ID | No |
 | `MSG91_SENDER_ID` | MSG91 Approved 6-char Header (e.g. `RAITHA`) | No |
 | `VITE_API_BASE_URL` | Backend REST Endpoint (`https://raitha-mitra-backend.onrender.com/api/v1`) | **Yes (Public)** |
+
+### 🔐 Authentication Modes
+
+- **Demo / Portfolio Mode (`OTP_ENABLED=false`)**:
+  Allows instant, unblocked evaluation during portfolio reviews and interviewer demos without requiring live SMS gateway onboarding or DLT registration. All Spring Security rules, JWT token issuance, account status checks (rejecting suspended accounts), and RBAC controls remain fully active.
+- **Real SMS OTP Mode (`OTP_ENABLED=true`)**:
+  Enforces 6-digit SMS OTP challenge via MSG91 HTTPS REST API with SHA-256 local hashing, 30s resend cooldown, 5-minute expiry, and max 3 verification attempts.
+
 
 ---
 
