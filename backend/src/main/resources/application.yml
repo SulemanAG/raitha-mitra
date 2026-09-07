@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: raitha-mitra-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /
+
+# Common Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.raithamitra.backend: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: WARN

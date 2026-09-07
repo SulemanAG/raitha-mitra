@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/**
+ * Base Theme Customization for Raitha Mitra
+ * Styled for mobile-first accessibility with high contrast and minimum 48px touch targets
+ * Primary: Earth Green (#15803d) representing agriculture and foliage
+ * Secondary/Accent: Warm Amber/Harvest Gold (#d97706) representing crops and harvesting
+ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  body {
+    background-color: #f8fafc;
+    color: #0f172a;
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Accessible focus indicators */
+  *:focus-visible {
+    outline: 3px solid #16a34a;
+    outline-offset: 2px;
+  }
+}
+
+/* Custom utility classes for touch targets & accessibility */
+.touch-target {
+  min-height: 48px;
+  min-width: 48px;
+}

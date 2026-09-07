@@ -1,0 +1,44 @@
+{
+  "splash": {
+    "title": "Welcome to Raitha Mitra",
+    "subtitle": "Connecting farmers with skilled agricultural labourers across Karnataka and India.",
+    "getStarted": "Get Started"
+  },
+  "language": {
+    "title": "Choose your language",
+    "subtitle": "Select the language you prefer for using Raitha Mitra."
+  },
+  "roles": {
+    "title": "Who are you?",
+    "subtitle": "Select your primary role to customize your experience.",
+    "farmer": {
+      "title": "Farmer (ರೈತ)",
+      "description": "Post farm work requests, find skilled labourers, hire machinery, and manage farm tasks."
+    },
+    "labourer": {
+      "title": "Agricultural Labourer (ಕಾರ್ಮಿಕ)",
+      "description": "Find nearby daily agricultural work opportunities, connect with farm owners, and track earnings."
+    }
+  },
+  "login": {
+    "title": "Enter your mobile number",
+    "subtitle": "We will send a 6-digit OTP code to verify your identity.",
+    "placeholder": "Enter 10-digit number",
+    "disclaimer": "By continuing, you agree to receive SMS verification for Raitha Mitra services."
+  },
+  "otp": {
+    "title": "Verify Mobile Number",
+    "subtitle": "Enter the 6-digit verification code sent to",
+    "changeNumber": "Change mobile number",
+    "resendCooldown": "Resend OTP in {{seconds}}s",
+    "resendReady": "Didn't receive the code?",
+    "simNote": "Phase 1 Simulation: Enter any 6-digit code (e.g. 123456) to proceed."
+  },
+  "complete": {
+    "title": "Onboarding Complete!",
+    "subtitle": "Welcome to Raitha Mitra. Authentication backend integration will be introduced in Phase 2.",
+    "roleSelected": "Selected Role:",
+    "mobileEntered": "Mobile Number:",
+    "languageSelected": "Selected Language:"
+  }
+}

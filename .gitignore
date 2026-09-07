@@ -1,0 +1,32 @@
+# Node / React Frontend
+node_modules
+frontend/node_modules
+dist
+frontend/dist
+dist-ssr
+*.local
+.env
+.env.*
+
+# Java / Maven Backend
+target
+backend/target
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# IDE & Editor files
+.idea
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.suo
+.DS_Store
+.classpath
+.project
+.settings
+
+# OS Generated
+Thumbs.db

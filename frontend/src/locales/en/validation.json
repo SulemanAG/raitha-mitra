@@ -1,0 +1,13 @@
+{
+  "mobile": {
+    "required": "Mobile number is required.",
+    "invalidLength": "Mobile number must be exactly 10 digits.",
+    "invalidFormat": "Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.",
+    "numericOnly": "Mobile number must contain only numeric digits."
+  },
+  "otp": {
+    "required": "Please enter the 6-digit OTP code.",
+    "invalidLength": "OTP must be exactly 6 digits.",
+    "numericOnly": "OTP must contain only numbers."
+  }
+}

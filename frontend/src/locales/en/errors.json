@@ -1,0 +1,6 @@
+{
+  "generic": "Something went wrong. Please try again.",
+  "network": "Network connection error. Please check your internet connection.",
+  "storageError": "Browser storage preference error.",
+  "unauthorizedStep": "Please complete previous onboarding steps first."
+}

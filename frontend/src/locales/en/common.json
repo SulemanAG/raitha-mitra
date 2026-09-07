@@ -1,0 +1,18 @@
+{
+  "appName": "Raitha Mitra",
+  "appTagline": "Empowering Agricultural Workforce",
+  "buttons": {
+    "continue": "Continue",
+    "back": "Back",
+    "submit": "Submit",
+    "verify": "Verify OTP",
+    "resend": "Resend OTP",
+    "changeLanguage": "Change Language",
+    "cancel": "Cancel"
+  },
+  "labels": {
+    "selectLanguage": "Select Language",
+    "mobileNumber": "Mobile Number",
+    "otp": "One-Time Password (OTP)"
+  }
+}

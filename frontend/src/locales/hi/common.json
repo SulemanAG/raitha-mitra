@@ -1,0 +1,18 @@
+{
+  "appName": "रायता मित्र",
+  "appTagline": "कृषि कार्यबल का सशक्तिकरण",
+  "buttons": {
+    "continue": "आगे बढ़ें",
+    "back": "पीछे जाएं",
+    "submit": "सबमिट करें",
+    "verify": "ओटीपी सत्यापित करें",
+    "resend": "ओटीपी दोबारा भेजें",
+    "changeLanguage": "भाषा बदलें",
+    "cancel": "रद्द करें"
+  },
+  "labels": {
+    "selectLanguage": "भाषा चुनें",
+    "mobileNumber": "मोबाइल नंबर",
+    "otp": "वन-टाइम पासवर्ड (OTP)"
+  }
+}
